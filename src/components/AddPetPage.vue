@@ -1,7 +1,7 @@
 <template>
 	<q-page class="add-pet-page bg-light">
-		<div class="content-container">
-			<div class="form-section">
+		<div class="content-container row q-gutter-lg">
+			<div class="form-section col-12 col-md-7">
 				<h2 class="text-h5 text-bold">Основная Информация</h2>
 
 				<q-form class="q-mt-md row q-col-gutter-md">
@@ -17,10 +17,13 @@
 
 				<h2 class="text-h5 text-bold q-mt-lg">Добавить фотографию питомца</h2>
 				<q-uploader label="Перетащите файл сюда" hint="Или щелкните, чтобы выбрать файл" class="q-my-md" />
+
+				<q-btn label="Отправить объявление" class="q-mt-lg q-mt-md-button" @click="submitForm" />
 			</div>
 
-			<div class="image-section">
-				<q-img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg" class="pet-image" />
+			<div class="image-section col-12 col-md-5">
+				<q-img src="~assets/cat.png" class="col-12 col-md-5"
+					contain />
 			</div>
 		</div>
 	</q-page>
@@ -45,48 +48,33 @@ export default {
 			genders: ["Мальчик", "Девочка"],
 		};
 	},
+	methods: {
+		submitForm() {
+			alert("Объявление отправлено!");
+		},
+	},
 };
 </script>
 
-<style>
+<style scoped>
 .add-pet-page {
 	padding: 20px;
-	margin-left: 30%;
-	margin-right: 30%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	background-color: #E6E0DC;
 }
 
 .content-container {
 	display: flex;
-	flex: 1;
-	gap: 20px;
 	align-items: stretch;
+	height: auto;
 }
 
 .form-section {
 	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
 }
 
 .image-section {
-	flex: 0 0 50%;
-	/* Занимает 50% от контейнера */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.pet-image {
-	width: 100%;
-	height: auto;
-	max-height: 600px;
-	object-fit: cover;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 </style>

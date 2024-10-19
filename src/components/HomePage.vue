@@ -3,15 +3,16 @@
 
 		<div class="main-info q-mt-xl q-px-xl row items-center justify-between">
 			<div class="col-12 col-md-6">
-				<h1 class="text-h3 text-bold">Верните Своего Друга Домой</h1>
+				<h1 class="site-title">tabu.kz</h1>
+				<h2 class="subtitle">Верните Своего Друга Домой</h2>
 				<p class="text-subtitle2">
 					Сайт предлагает вам помощь в размещении объявления о пропаже или
 					находки питомца. Мы предоставляем инструменты и ресурсы, чтобы помочь вам
 					распространить информацию в виде объявлений и фотографий.
 				</p>
-				<q-btn label="Подать объявление" color="green" class="q-mt-md" @click="$router.push('/add-pet')" />
+				<q-btn label="Подать объявление" class="q-mt-md q-mt-md-button" @click="$router.push('/add-pet')" />
 			</div>
-			<q-img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg" class="col-12 col-md-5"
+			<q-img src="~assets/corgi.png" class="col-12 col-md-5"
 				contain />
 		</div>
 	</q-page>
@@ -25,6 +26,15 @@ export default {
 
 <style>
 .bg-light {
-	background-color: #f8f8f8;
+	background-color: #DFD2CC;
+	color: #3E1F47;
+}
+.site-title {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #3E1F47;
+}
+.q-mt-md-button {
+ background-color: #CADDBF;
 }
 </style>
