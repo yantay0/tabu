@@ -15,16 +15,13 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
 
-    // app boot file (/src/boot)
+    // app boot file (/src/boot)S
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
-<<<<<<< HEAD
       'firebase',
       'google-maps'
-=======
 
->>>>>>> external-repo/main
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
