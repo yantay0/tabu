@@ -10,46 +10,48 @@
       <!-- Left Column: Contact Information -->
       <div class="left-column q-pa-md bg-cyan-9 text-white" style="flex: 1;"> <!-- Set flex property -->
         <div class="text-h5 text-bold">Контакты</div>
-        <q-input filled v-model="announcement.contact.name" label="Имя" class="q-mt-md" />
-        <q-input filled v-model="announcement.contact.phone" label="Телефон" class="q-mt-md" />
-        <q-input filled v-model="announcement.contact.email" label="Email" class="q-mt-md" />
-        <q-btn class="q-mt-lg q-ml-sm" color="white" text-color="cyan-9" label="Связаться" />
+        <q-input filled v-model="announcement.contact.name" label="Имя" class="q-mt-md rounded-input" />
+        <q-input filled v-model="announcement.contact.phone" label="Телефон" class="q-mt-md rounded-input" />
+        <q-input filled v-model="announcement.contact.email" label="Email" class="q-mt-md rounded-input" />
+        <q-btn class="q-mt-lg q-ml-sm rounded" color="white" text-color="cyan-9" label="Связаться" />
       </div>
 
       <!-- Right Column: Pet Details -->
-      <div class="right-column q-pa-md" style="flex: 2;"> <!-- Set flex property -->
-        <!-- Title -->
-        <div class="text-h6 text-bold q-mb-md">{{ announcement.title }}</div>
+        <div class="right-column q-pa-md" style="flex: 2;"> <!-- Set flex property -->
+          <!-- Title -->
+          <div class="text-h6 text-bold q-mb-md">{{ announcement.title }}</div>
 
-        <!-- Pet Main Image -->
-        <q-img :src="announcement.image" style="width: 45%;" />
+          <!-- Container for Image and Description -->
+          <div class="image-description-container" style="display: flex; align-items: flex-start;">
+            <!-- Pet Main Image -->
+            <q-img :src="announcement.image" style="width: 45%; margin-right: 16px;" /> <!-- Add margin-right for spacing -->
 
-        <!-- Pet Description -->
-        <div class="q-mt-md">
-          <div class="text-bold q-mb-xs">Описание</div>
-          <q-list bordered>
-            <q-item>
-              <q-item-section>Пол</q-item-section>
-              <q-item-section>{{ announcement.gender }}</q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>Порода</q-item-section>
-              <q-item-section>{{ announcement.breed }}</q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>Цвет</q-item-section>
-              <q-item-section>{{ announcement.color }}</q-item-section>
-            </q-item>
-          </q-list>
+            <!-- Pet Description -->
+            <div class="description-container" style="flex: 1;"> <!-- Allow description to take remaining space -->
+              <div class="text-bold q-mb-xs">Описание</div>
+              <q-list bordered>
+                <q-item>
+                  <q-item-section>Пол</q-item-section>
+                  <q-item-section>{{ announcement.gender }}</q-item-section>
+                </q-item>
+                <q-item>
+                  <q-item-section>Порода</q-item-section>
+                  <q-item-section>{{ announcement.breed }}</q-item-section>
+                </q-item>
+                <q-item>
+                  <q-item-section>Цвет</q-item-section>
+                  <q-item-section>{{ announcement.color }}</q-item-section>
+                </q-item>
+              </q-list>
+
+              <!-- Pet Details -->
+              <div class="q-mt-md">
+                <div class="text-bold q-mb-xs">Подробности</div>
+                <p>{{ announcement.details }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Pet Details -->
-        <div class="q-mt-md">
-          <div class="text-bold q-mb-xs">Подробности</div>
-          <p>{{ announcement.details }}</p>
-        </div>
-
-      </div>
     </div>
       </div>
   </q-page>
@@ -103,6 +105,19 @@ export default {
   padding: 16px; /* Optional padding for better spacing */
   background-color: #009688; /* Example color */
   color: white; /* Text color */
+}
+/* Optional: To ensure the input looks good with rounded corners */
+.rounded-input .q-field__control {
+  border-radius: 20px; /* Make sure inner control has the same border radius */
+}
+
+/* Optional: Adjust the color of the label when using filled */
+.rounded-input .q-field__label {
+  color: #000; /* Change label color to black or desired color */
+}
+.rounded-input {
+  border-radius: 20px; /* Adjust the border radius as needed */
+  background-color: white; /* Set the background color to white */
 }
 
 .right-column {
