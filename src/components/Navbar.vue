@@ -8,7 +8,7 @@
       <div class="text-h5 text-bold text-black" @click="$router.push('/')">tabu.kz</div>
       <q-space />
       <q-btn flat label="Подать объявление" class="q-mx-sm text-black" @click="$router.push('/add-pet')"/>
-      <q-btn flat label="Объявления" class="q-mx-sm text-black" />
+      <q-btn flat label="Объявления" class="q-mx-sm text-black" @click="$router.push('/reports')"/>
       <q-btn flat label="Карта" class="q-mx-sm text-black" />
       <q-btn flat label="Новости" class="q-mx-sm text-black" />
       <q-btn flat label="Приют" class="q-mx-sm text-black" />
