@@ -1,0 +1,33 @@
+// app global css in SCSS form
+body, .q-select__dropdown-content {
+	color: #3A2A3F !important;
+  // background-color: #DFD2CC;
+  }
+
+  .q-page-container {
+    padding-top: 58px; 
+    padding-bottom: 0 !important; 
+  }
+  
+
+  .q-item {
+	color: black !important;
+  }
+  
+  .q-item--active {
+	color: black !important;
+  }
+  
+  .q-icon {
+	color: black !important;
+  }
+  
+  .q-mt-md-button {
+    background-color: #CADDBF;
+  }
+  .q-mx-sm {
+    background-color: #DFD2CC;
+  }
+  .q-header {
+    background-color: #DFD2CC;
+  }
