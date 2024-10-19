@@ -1,5 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf" class="layout-container">
+<<<<<<< HEAD
     <q-header elevated class="q-px-md q-pt-sm">
       <q-toolbar>
         <router-link to="/" class="text-h5 text-bold text-black no-decoration">
@@ -16,6 +17,9 @@
         </q-avatar>
       </q-toolbar>
     </q-header>
+=======
+    <Navbar/>
+>>>>>>> 4d5d977844d7678ab37802c48508d7b1e9fe4023
 
     <q-page-container>
       <router-view />
@@ -59,8 +63,11 @@
 
 
 <script>
+import Navbar from 'components/Navbar.vue'
+
 export default {
-  name: 'MainLayout'
+  name: 'MainLayout',
+  components: { Navbar }
 };
 </script>
 
