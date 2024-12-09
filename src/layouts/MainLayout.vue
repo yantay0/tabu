@@ -1,95 +1,123 @@
+<!-- MainLayout.vue -->
 <template>
-  <q-layout view="hHh lpR fFf" class="layout-container">
-    <q-header elevated class="q-px-md q-pt-sm bg-white">
+  <q-layout view="hHh LpR fFf">
+    <q-header elevated class="bg-primary text-white">
       <q-toolbar>
-        <div class="text-h5 text-bold text-black">tabu.kz</div>
-        <q-space />
-        <q-btn flat label="Подать объявление" class="q-mx-sm text-black" />
-        <q-btn flat label="Объявления" class="q-mx-sm text-black" />
-        <q-btn flat label="Карта" class="q-mx-sm text-black" />
-        <q-btn flat label="Новости" class="q-mx-sm text-black" />
-        <q-btn flat label="Приют" class="q-mx-sm text-black" />
-        <q-avatar size="42px" class="bg-grey-2">
-          <q-icon name="person" size="24px" class="text-black" />
-        </q-avatar>
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
 
+        <q-toolbar-title>Adventure Blog</q-toolbar-title>
 
+        <q-btn-group spread>
+          <q-btn flat label="Sort by Date" @click="sortByDate" />
+          <q-btn flat label="Sort by Rating" @click="sortByRating" />
+        </q-btn-group>
+
+        <q-btn-dropdown flat label="User" v-if="isAuthenticated">
+          <q-list>
+            <q-item clickable v-close-popup @click="goToProfile">
+              <q-item-section>Profile</q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="goToStatistics">
+              <q-item-section>Statistics</q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="logout">
+              <q-item-section>Logout</q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
-    <q-page-container class="content-container">
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      class="bg-grey-1"
+    >
+      <q-list>
+        <q-item-label header>Navigation</q-item-label>
+
+        <q-item clickable :to="{ name: 'home' }">
+          <q-item-section avatar>
+            <q-icon name="home" />
+          </q-item-section>
+          <q-item-section>Home</q-item-section>
+        </q-item>
+
+        <q-item clickable :to="{ name: 'adventure' }">
+          <q-item-section avatar>
+            <q-icon name="explore" />
+          </q-item-section>
+          <q-item-section>Adventure</q-item-section>
+        </q-item>
+
+        <q-item clickable :to="{ name: 'chat' }">
+          <q-item-section avatar>
+            <q-icon name="chat" />
+          </q-item-section>
+          <q-item-section>Chat</q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
       <router-view />
     </q-page-container>
-
-    <!-- <q-footer class="bg-dark text-white q-pt-md q-pb-md">
-      <div class="row q-px-md q-gutter-md justify-around">
-        <div class="col-12 col-sm-3">
-          <h6>COMPANY NAME</h6>
-          <p class="footer-text">Organize your footer content efficiently with rows and columns.</p>
-        </div>
-        <div class="col-12 col-sm-2">
-          <h6>PRODUCTS</h6>
-          <ul class="footer-list">
-            <li>MDBootstrap</li>
-            <li>MDWordPress</li>
-            <li>BrandFlow</li>
-            <li>Bootstrap Angular</li>
-          </ul>
-        </div>
-        <div class="col-12 col-sm-2">
-          <h6>USEFUL LINKS</h6>
-          <ul class="footer-list">
-            <li>Your Account</li>
-            <li>Become an Affiliate</li>
-            <li>Shipping Rates</li>
-            <li>Help</li>
-          </ul>
-        </div>
-        <div class="col-12 col-sm-3">
-          <h6>CONTACT</h6>
-          <p class="footer-text">New York, NY 10012, US</p>
-          <p class="footer-text">info@example.com</p>
-          <p class="footer-text">+01 234 567 88</p>
-          <p class="footer-text">+01 234 567 89</p>
-        </div>
-      </div>
-    </q-footer> -->
   </q-layout>
 </template>
 
 <script>
-export default {
-  name: 'MainLayout'
-};
+import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import _ from 'lodash';
+
+export default defineComponent({
+  name: 'MainLayout',
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const router = useRouter();
+    const store = useStore();
+
+    return {
+      leftDrawerOpen,
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+      sortByDate: _.debounce(() => {
+        store.dispatch('sortPersonsByDate');
+      }, 300),
+      sortByRating: _.debounce(() => {
+        store.dispatch('sortPersonsByRating');
+      }, 300),
+      isAuthenticated() {
+        return store.getters['user/isAuthenticated'];
+      },
+      goToProfile() {
+        router.push('/profile');
+      },
+      goToStatistics() {
+        router.push('/statistics');
+      },
+      logout() {
+        store.dispatch('user/logout');
+        router.push('/login');
+      }
+    };
+  }
+});
 </script>
 
-<style>
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+<style lang="scss">
+.q-toolbar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
-
-.content-container {
-  flex: 1;
-}
-
-/* .footer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-list li {
-  margin-bottom: 4px;
-}
-
-.footer-text {
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-
-.q-footer {
-  height: 30%;
-} */
 </style>

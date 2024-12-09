@@ -1,25 +1,51 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+$primary: #1976D2;
+$secondary: #26A69A;
+$accent: #9C27B0;
 
-// Check documentation for full list of Quasar variables
+$dark: #1D1D1D;
+$dark-page: #121212;
 
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
+$positive: #21BA45;
+$negative: #C10015;
+$info: #31CCEC;
+$warning: #F2C037;
 
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
+$text-primary: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
 
-$primary   : #1976D2;
-$secondary : #26A69A;
-$accent    : #9C27B0;
+$border-radius: 8px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-$dark      : #1D1D1D;
-$dark-page : #121212;
+// assets/styles/main.scss
+@import './variables.scss';
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  color: $text-primary;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, $primary, $secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blur-background {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+}
